@@ -28,7 +28,7 @@ class TodoList {
   }
 
   removeNotes2(key) {
-    //видалення нотатка (по ключу масиву?):
+    //видалення нотатка (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД): 
     this.notes.splice(key, 1);
   }
 
@@ -44,7 +44,7 @@ class TodoList {
   }
 
   editNotes2(key, newNotes) {
-    //редагування нотатка (по ключу масиву?):
+    //редагування нотатка (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД):
     this.notes[key].notes = newNotes;
     const date2 = new Date();
     this.notes[key].dateEditing = date2.toLocaleString();
@@ -60,7 +60,7 @@ class TodoList {
   }
 
   getInformationNotes2(key) {
-    //отримання повної інформації про нотатку (по ключу масиву?):
+    //отримання повної інформації про нотатку (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД):
     console.log(this.notes[key]);
   }
 
@@ -81,7 +81,7 @@ class TodoList {
   }
 
   changeDoneNotes2(key, done) {
-    //позначити замітку, як виконану (по ключу масиву?):
+    //позначити замітку, як виконану (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД):
 
     this.notes[key].done = done;
     //this.notes.splice(key, 1, newNotes.done);
@@ -182,17 +182,17 @@ andriiList.addNotes(andriiNotes1);
 andriiList.addNotes(andriiNotes4);
 
 //andriiList.removeNotes("Notes1"); // видалення нотатку (за ім`ям)
-//andriiList.removeNotes2(1)  // видалення нотатку (по ключу масиву?)
+//andriiList.removeNotes2(1)  // видалення нотатку (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 
 andriiList.editNotes("Notes1", "Купити хліб і молока"); // редагування нотатки (за ім`ям)
 
-//andriiList.editNotes2(0, "Купити хліб і молока");  // редагування нотатки (по ключу масиву?)
+//andriiList.editNotes2(0, "Купити хліб і молока");  // редагування нотатки (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 
 //andriiList.getInformationNotes("Notes2") //отримання повної інформації про нотатку (за ім`ям)
-//andriiList.getInformationNotes2(1) //отримання повної інформації про нотатку (по ключу масиву?)
+//andriiList.getInformationNotes2(1) //отримання повної інформації про нотатку (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 //andriiList.getlist()  //отримання списку всіх нотаток
 //andriiList.changeDoneNotes("Notes1", true); //позначити замітку, як виконану (за ім`ям)
-//andriiList.changeDoneNotes2(0, true);  //позначити замітку, як виконану (по ключу масиву?)
+//andriiList.changeDoneNotes2(0, true);  //позначити замітку, як виконану (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 //andriiList.howManyNotes(); //скільки всього нотаток у списку і скільки залишилося невиконань
 //andriiList.findNotes("Notes1");  // знайти нотатку
 //andriiList.sortNotesFalse() // сортувати спочатку не виконані
