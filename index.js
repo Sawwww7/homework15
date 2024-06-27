@@ -15,7 +15,10 @@ class TodoList {
 
   addNotes(noteses) {
     //додавання нової нотатки
-    this.notes.push(noteses);
+    const note = this.notes.find((note) => note.name === noteses.name);
+    if (note) {
+      console.log(`Нотатка з  ім'ям ${noteses.name} вже існує`);
+    } else{this.notes.push(noteses)}   
   }
 
   removeNotes(name) {
@@ -28,17 +31,16 @@ class TodoList {
   }
 
   removeNotes2(key) {
-    //видалення нотатка (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД): 
+    //видалення нотатка (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД):
     this.notes.splice(key, 1);
   }
 
   editNotes(name, newNotes) {
-    //редагування нотатка (за ім`ям):
+    //редагування нотатка (за ім'ям):
     this.notes.forEach((n) => {
       if (n.name === name) {
         n.notes = newNotes;
-        const date2 = new Date();
-        n.dateEditing = date2.toLocaleString();
+        n.dateEditing = new Date().toLocaleString();
       }
     });
   }
@@ -51,12 +53,11 @@ class TodoList {
   }
 
   getInformationNotes(name) {
-    //отримання повної інформації про нотатку (за ім`ям):
-    this.notes.forEach((n) => {
-      if (n.name === name) {
-        console.log(n);
-      }
-    });
+    //отримання повної інформації про нотатку (за ім'ям):
+    const note = this.notes.find((note) => note.name === name);
+    if (note) {
+      console.log(note);
+    }
   }
 
   getInformationNotes2(key) {
@@ -70,14 +71,12 @@ class TodoList {
   }
 
   changeDoneNotes(name, done) {
-    //позначити замітку, як виконану (за ім`ям):
-    this.notes.forEach((n) => {
-      if (n.name === name) {
-        n.done = done;
-        const date2 = new Date();
-        n.dateEditing = date2.toLocaleString();
-      }
-    });
+    //позначити замітку, як виконану (за ім'ям):
+    const note = this.notes.find((note) => note.name === name);
+    if (note) {
+      note.done = done;
+      note.dateEditing = new Date().toLocaleString();
+    }
   }
 
   changeDoneNotes2(key, done) {
@@ -85,29 +84,20 @@ class TodoList {
 
     this.notes[key].done = done;
     //this.notes.splice(key, 1, newNotes.done);
-    const date2 = new Date();
-    this.notes[key].dateEditing = date2.toLocaleString();
+    this.notes[key].dateEditing = new Date().toLocaleString();
   }
 
   howManyNotes() {
     //скільки всього нотаток у списку і скільки залишилося невиконань
-    console.log(`Кількість нотатків ${this.notes.length}`);
-    let doneNotes = 0;
-    this.notes.forEach((note) => {
-      if (note.done === false) {
-        doneNotes += 1;
-      }
-    });
-    console.log(`Кількість не виконаних нотатків ${doneNotes}`);
+  const totalNotes=this.notes.length;
+  const unfinishedNotes = this.notes.filter(note =>!note.done).length;
+  console.log(`Всього нотатків: ${totalNotes}, не виконаних нотаток: ${unfinishedNotes}`)
   }
 
   findNotes(name) {
     // знайти нотатку
-    this.notes.forEach((n) => {
-      if (n.name === name) {
-        console.log(n);
-      }
-    });
+    const foundNotes = this.notes.filter(note => note.name.includes(name));
+    console.log(foundNotes);
   }
 
   sortNotesFalse() {
@@ -127,22 +117,17 @@ class TodoList {
 
   findNotesDate(date) {
     // знайти нотатку по даті
-    this.notes.forEach((n) => {
-      if (n.dateDate === date) {
-        console.log(n);
-      }
-    });
+    const foundNotesDate = this.notes.filter(note => note.date.includes(date));
+    console.log(foundNotesDate);
   }
 }
 class Notes {
-  constructor(name, notes, done = true /*date*/) {
+  constructor(name, notes, done = true ) {
     //debugger
     this.name = name;
     this.notes = notes;
     this.done = done;
-    const date2 = new Date(/*date*/);
-    this.date = date2.toLocaleString();
-    this.dateDate = date2.toLocaleDateString();
+    this.date = new Date().toLocaleString();   
     this.dateEditing;
   }
 }
@@ -152,25 +137,25 @@ andriiNotes1 = new Notes(
   "Notes1",
   "Купити хліб",
   false
-  // "2024-06-11T19:15:00.000Z"
+  
 );
 andriiNotes2 = new Notes(
   "Notes2",
-  "Привітати друга з Денм народження",
+  "Привітати друга з Днем народження",
   true
-  //"2024-06-05T19:15:00.000Z"
+  
 );
 andriiNotes3 = new Notes(
   "Notes3",
   "Виконати домашку",
   false
-  //"2024-06-21T19:15:00.000Z"
+  
 );
 andriiNotes4 = new Notes(
   "Notes4",
   "Сходити на зустріч",
   true
-  //"2024-06-04T19:15:00.000Z"
+  
 );
 
 //console.log(andriiNotes1.name)
@@ -181,17 +166,14 @@ andriiList.addNotes(andriiNotes3);
 andriiList.addNotes(andriiNotes1);
 andriiList.addNotes(andriiNotes4);
 
-//andriiList.removeNotes("Notes1"); // видалення нотатку (за ім`ям)
+//andriiList.removeNotes("Notes1"); // видалення нотатку (за ім'ям)
 //andriiList.removeNotes2(1)  // видалення нотатку (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
-
-andriiList.editNotes("Notes1", "Купити хліб і молока"); // редагування нотатки (за ім`ям)
-
+//andriiList.editNotes("Notes1", "Купити хліб і молока"); // редагування нотатки (за ім'ям)
 //andriiList.editNotes2(0, "Купити хліб і молока");  // редагування нотатки (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
-
-//andriiList.getInformationNotes("Notes2") //отримання повної інформації про нотатку (за ім`ям)
+//andriiList.getInformationNotes("Notes2") //отримання повної інформації про нотатку (за ім'ям)
 //andriiList.getInformationNotes2(1) //отримання повної інформації про нотатку (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 //andriiList.getlist()  //отримання списку всіх нотаток
-//andriiList.changeDoneNotes("Notes1", true); //позначити замітку, як виконану (за ім`ям)
+//andriiList.changeDoneNotes("Notes1", true); //позначити замітку, як виконану (за ім'ям)
 //andriiList.changeDoneNotes2(0, true);  //позначити замітку, як виконану (по ключу масиву? СКОРЕЕ ВСЕГО УДАЛИТЬ МЕТОД)
 //andriiList.howManyNotes(); //скільки всього нотаток у списку і скільки залишилося невиконань
 //andriiList.findNotes("Notes1");  // знайти нотатку
