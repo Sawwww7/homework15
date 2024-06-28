@@ -118,8 +118,6 @@ andriiNotes2 = new Notes("Notes2", "Привітати друга з Днем н
 andriiNotes3 = new Notes("Notes3", "Виконати домашку", false);
 andriiNotes4 = new Notes("Notes4", "Сходити на зустріч", true);
 
-//console.log(andriiNotes1.name)
-
 andriiList.addNotes(andriiNotes1); //додавання нової нотатки
 andriiList.addNotes(andriiNotes2);
 andriiList.addNotes(andriiNotes3);
